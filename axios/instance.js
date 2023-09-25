@@ -11,6 +11,13 @@ const instance = axios.create({
     "Content-Type": "application/json",
   },
 });
+// const instance = axios.create({
+//   baseURL: API_URL,
+//   headers: {
+//     // "Content-Type": "multipart/form-data",
+//     "Content-Type": "application/json",
+//   },
+// });
 
 // instance.interceptors.request.use(
 //   (config) => {

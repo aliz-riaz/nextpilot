@@ -7,31 +7,16 @@ import { addTodo, removeTodo } from "../redux/features/todo/todoSlice";
 import AboutCard from "../../components/aboutCard";
 import UseRegisterList from "@/hooks/useRegisterList";
 
-async function getData() {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
-
-  // Recommendation: handle errors
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
-  }
-
-  return await res.json();
-}
-
 export default function About() {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const [input, setInput] = useState("");
   // const data = [{ title: "aaa" }, { title: "aaa" }];
   const dispatch = useDispatch();
-
   const todos = useSelector((state) => state.todoReducer.todos);
-  console.log("todos", todos);
-  const myHandler = (val) => {
-    console.log(val);
-  };
+
+  // const { mutate } = UseRegister();
+  const { data, error, isLoading } = UseRegisterList();
+
   useEffect(() => {
     async function fetchData() {
       // const res = await fetch("https://jsonplaceholder.typicode.com/posts")
@@ -48,10 +33,12 @@ export default function About() {
       //   .catch(function (error) {
       //     console.log("Looks like there was a problem: \n", error);
       //   });
-      const res = await UseRegisterList();
-      console.log("Ali RIaz===", res);
+      // const res = await UseRegisterList();
+      // console.log("Ali RIaz===", res);
     }
     fetchData();
+    // mutate()(;
+    console.log("data==", data);
   }, []);
 
   const addTodohandler = (e) => {
@@ -64,27 +51,39 @@ export default function About() {
     dispatch(removeTodo(todoId));
   };
   return (
-    <div>
-      <form onSubmit={addTodohandler}>
-        <input
-          type="text"
-          value={input}
-          placeholder="todo"
-          onChange={(e) => setInput(e.target.value)}
-        />
-        <button type="submit">Sibmit</button>
-      </form>
-
-      {todos?.map((todo) => {
-        return (
-          <>
-            <AboutCard removeTodoHandler={removeTodoHandler} todo={todo} />
-          </>
-        );
-      })}
-      {/* {data?.map((item) => {
-        return <AboutCard key={item} item={item} myHandler={myHandler} />;
-      })} */}
+    <div class="flex justify-center">
+      <div className="w-1/2">
+        <form onSubmit={addTodohandler}>
+          <div className="flex">
+            <div className="w-5/6">
+              <input
+                type="text"
+                value={input}
+                placeholder="todo"
+                className="block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                onChange={(e) => setInput(e.target.value)}
+              />
+            </div>
+            <div className="w-1/6 ml-2">
+              <button
+                type="submit"
+                class=" rounded md:rounded-lg bg-sky-600 text-white px-3 py-2 hover:bg-sky-700 w-full"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </form>
+        <div className="mt-3">
+          {todos?.map((todo) => {
+            return (
+              <>
+                <AboutCard removeTodoHandler={removeTodoHandler} todo={todo} />
+              </>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }

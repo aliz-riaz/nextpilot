@@ -1,20 +1,28 @@
-import { instance } from "@/axios/instance"; // Import the Axios instance
+import { useState, useEffect } from "react";
+import { instance } from "@/axios/instance";
 
-async function useRegisterList() {
-  let response;
-  // GET request with headers
-  await instance
-    .get("/posts")
-    .then((res) => {
-      // Handle the successful response here
-      console.log("GET response:", res.data);
-      response = res.data;
-    })
-    .catch((error) => {
-      // Handle any errors here
-      console.error("GET error:", error);
-      response = error;
-    });
-  return response;
+export default function useGetRequest() {
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const response = await instance.get("/posts");
+        setData(response.data);
+        setError(null);
+      } catch (error) {
+        setError(error);
+        setData(null);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return { data, error, isLoading };
 }
-export default useRegisterList;

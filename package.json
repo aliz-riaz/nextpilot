@@ -9,18 +9,25 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
     "@reduxjs/toolkit": "^1.9.5",
     "autoprefixer": "10.4.14",
     "axios": "^1.5.0",
+=======
+    "autoprefixer": "10.4.14",
+>>>>>>> 5394ee9 (Initial commit from Create Next App)
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.9",
     "next": "13.4.9",
     "postcss": "8.4.25",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+<<<<<<< HEAD
     "react-redux": "^8.1.2",
+=======
+>>>>>>> 5394ee9 (Initial commit from Create Next App)
     "tailwindcss": "3.3.2"
   }
 }

@@ -15,9 +15,8 @@ export const todoSlice = createSlice({
   reducers: {
     addTodo: (state, action) => {
       state.todos.push({
-        id: generateRandomId(),
+        id: nanoid(),
         text: action.payload,
-        completed: false,
       });
     },
     // addTodo: (state, action) => {
@@ -32,17 +31,6 @@ export const todoSlice = createSlice({
     },
   },
 });
-
-// Helper function to generate a random ID
-function generateRandomId(size = 21) {
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  let id = "";
-  for (let i = 0; i < size; i++) {
-    id += characters.charAt(Math.floor(Math.random() * characters.length));
-  }
-  return id;
-}
 
 export const { addTodo, removeTodo } = todoSlice.actions;
 

@@ -50,6 +50,7 @@ export default function About() {
   const removeTodoHandler = (todoId) => {
     dispatch(removeTodo(todoId));
   };
+  console.log("todos", todos);
   return (
     <div class="flex justify-center">
       <div className="w-1/2">

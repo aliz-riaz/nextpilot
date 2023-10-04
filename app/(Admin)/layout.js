@@ -1,4 +1,4 @@
-import "./globals.scss";
+// import "@/app/globals.css";
 
 import { Providers } from "@/app/redux/StoreProvider";
 import { Inter } from "next/font/google";
@@ -12,12 +12,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Providers>
-          <div className="container">{children}</div>
-        </Providers>
-      </body>
-    </html>
+    <main>
+      <div className="container aaaa">
+        <h1>Admin layout</h1>
+        {children}
+      </div>
+    </main>
   );
 }

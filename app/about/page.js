@@ -10,12 +10,13 @@ import UseRegisterList from "@/hooks/useRegisterList";
 export default function About() {
   // const [data, setData] = useState([]);
   const [input, setInput] = useState("");
+  const [search, setSearch] = useState("ali");
   // const data = [{ title: "aaa" }, { title: "aaa" }];
   const dispatch = useDispatch();
   const todos = useSelector((state) => state.todoReducer.todos);
 
   // const { mutate } = UseRegister();
-  const { data, error, isLoading } = UseRegisterList();
+  const { data, error, isLoading } = UseRegisterList(search);
 
   useEffect(() => {
     async function fetchData() {
@@ -37,8 +38,7 @@ export default function About() {
       // console.log("Ali RIaz===", res);
     }
     fetchData();
-    // mutate()(;
-    console.log("data==", data);
+    // mutate({ name: "ali", last: "riaz" });
   }, []);
 
   const addTodohandler = (e) => {

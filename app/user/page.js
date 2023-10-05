@@ -1,7 +1,11 @@
 "use client";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addUser, AddUserListName } from "../redux/features/todo/userSlice";
+import {
+  addUser,
+  AddUserListName,
+  removeUserListName,
+} from "../redux/features/todo/userSlice";
 import { useSelector } from "react-redux";
 
 export default function User() {
@@ -44,6 +48,13 @@ export default function User() {
         <div>
           <button type="submit" className="btn btn-md">
             Submit
+          </button>
+          <button
+            onClick={() => {
+              dispatch(removeUserListName());
+            }}
+          >
+            Clear
           </button>
         </div>
       </form>

@@ -29,6 +29,9 @@ export const userSlice = createSlice({
 
       state.userListName = "";
     },
+    resetAllVales: () => {
+      (state.userData = [{}]), (state.userListName = "");
+    },
   },
 });
 

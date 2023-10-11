@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { addTodo, removeTodo } from "../redux/features/todo/todoSlice";
 import AboutCard from "../../components/aboutCard";
 import UseRegisterList from "@/hooks/useRegisterList";
+import { signIn } from "next-auth/react";
 
 export default function About() {
   // const [data, setData] = useState([]);
@@ -53,6 +54,7 @@ export default function About() {
   console.log("todos", todos);
   return (
     <div class="flex justify-center">
+      <button onClick={() => signIn()}>SignIn button</button>
       <div className="w-1/2">
         <form onSubmit={addTodohandler}>
           <div className="flex">

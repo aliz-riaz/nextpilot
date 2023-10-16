@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;600;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,8 +18,19 @@
 }
 
 body {
+  font-family: "Inter", sans-serif;
   h1 {
     background-color: aqua;
     @apply px-2;
   }
+}
+a {
+  font-family: inherit;
+}
+.ddh {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.aqv {
+  padding: 1.5rem;
 }

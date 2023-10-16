@@ -1,5 +1,5 @@
 // import "@/app/globals.css";
-
+import DashboardHeader from "@/components/header/DashboardHeader";
 import { Providers } from "@/app/redux/StoreProvider";
 import { Inter } from "next/font/google";
 
@@ -13,6 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <main>
+      <DashboardHeader />
       <div className="container aaaa">
         <h1>Dashboard layout</h1>
         {children}

@@ -16,19 +16,18 @@ export default function SignInpage(props) {
   const pass = useRef("");
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    console.log("email", userData.email);
-    console.log("password", userData.password);
+
     const res = await signIn("credentials", {
       username: userData.email,
       password: userData.password,
       redirect: false,
     });
-    console.log("res==", res);
+
     if (!res?.error) {
-      router.push(callbackUrl ?? "http://localhost:3000");
+      // router.push(callbackUrl ?? "http://localhost:3000");
     }
   };
-  console.log("callbackUrl==", callbackUrl ?? "http://localhost:3000...");
+
   return (
     <form onSubmit={onSubmitHandler}>
       <h4>SignIn form</h4>

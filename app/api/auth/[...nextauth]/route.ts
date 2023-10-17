@@ -20,7 +20,10 @@ const authOptions: NextAuthOptions = {
         if (!credentials || !credentials?.username || !credentials?.password)
           return null;
         const user = users.find((item) => item.email === credentials.username);
+
         if (user?.password === credentials.password) {
+          // Create a custom user object here
+
           return user;
         } else {
           return null;
@@ -31,7 +34,30 @@ const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/signIn",
-    error: "/signIn",
+    // error: "/signIn",
+  },
+  session: { strategy: "jwt" },
+  callbacks: {
+    async jwt({ token, trigger, user }) {
+      // Modify the token with custom user data
+      console.log("trigger", trigger);
+      if (user) {
+        // console.log("account==", account);
+        // console.log("profile==", profile);
+        // token.id = user.id;
+        token.email = user.email;
+        token.avatar = user.avatar;
+        token.age = user.age;
+        // Add other custom user properties as needed
+      }
+      return token;
+    },
+    async session({ session, token, user }) {
+      // Modify the session with custom user data
+
+      session.user = token;
+      return session;
+    },
   },
 };
 const handler = NextAuth(authOptions);

@@ -41,16 +41,16 @@ const authOptions: NextAuthOptions = {
     async jwt({ token, trigger, user }) {
       // Modify the token with custom user data
       console.log("trigger", trigger);
-      if (user) {
-        // console.log("account==", account);
-        // console.log("profile==", profile);
-        // token.id = user.id;
-        token.email = user.email;
-        token.avatar = user.avatar;
-        token.age = user.age;
-        // Add other custom user properties as needed
-      }
-      return token;
+      // if (user) {
+      //   // console.log("account==", account);
+      //   // console.log("profile==", profile);
+      //   // token.id = user.id;
+      //   token.email = user.email;
+      //   token.avatar = user.avatar;
+      //   token.age = user.age;
+      //   // Add other custom user properties as needed
+      // }
+      return { ...token, ...user };
     },
     async session({ session, token, user }) {
       // Modify the session with custom user data

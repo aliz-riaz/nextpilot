@@ -12,19 +12,22 @@ export default function SignInpage(props) {
     email: "",
     password: "",
   });
+  const [error, setError] = useState();
   const userName = useRef("");
   const pass = useRef("");
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-
+    setError("");
     const res = await signIn("credentials", {
       username: userData.email,
       password: userData.password,
       redirect: false,
     });
-
+    console.log("res", res);
     if (!res?.error) {
-      // router.push(callbackUrl ?? "http://localhost:3000");
+      router.push(callbackUrl ?? "http://localhost:3000");
+    } else {
+      setError("email and password do not math");
     }
   };
 
@@ -58,6 +61,7 @@ export default function SignInpage(props) {
           SignIn
         </button>
       </div>
+      <div className="text-red-500">{error}</div>
     </form>
   );
 }

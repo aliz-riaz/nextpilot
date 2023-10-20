@@ -1,13 +1,18 @@
 "use client";
+
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 
 import styles from "./DashboardHeader.module.scss";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 const DashboardHeader = () => {
+  const { data } = useSession();
+  console.log("data", data?.user);
   return (
     <>
       <header>
@@ -35,7 +40,7 @@ const DashboardHeader = () => {
             <a href="#" className="font-semibold">
               Company
             </a>
-            {false ? (
+            {!data ? (
               <a href="#" className="font-semibold">
                 Log in <span aria-hidden="true">→</span>
               </a>
@@ -43,7 +48,13 @@ const DashboardHeader = () => {
               <Menu as="div" className="relative inline-block text-left">
                 <div>
                   <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                    Options
+                    <span>{data?.user?.name}</span>
+                    <img
+                      src={data?.user.avatar}
+                      alt="profile"
+                      width={`50`}
+                      height={`50`}
+                    />
                     <ChevronDownIcon
                       className="-mr-1 h-5 w-5 text-gray-400"
                       aria-hidden="true"
